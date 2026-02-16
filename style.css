@@ -1061,6 +1061,18 @@ body {
         grid-template-columns: 1fr;
     }
 
+    .experience-card {
+        padding: 1.5rem;
+    }
+
+    .experience-header h4 {
+        font-size: 1.1rem;
+    }
+
+    .experience-details li {
+        font-size: 0.9rem;
+    }
+
     .skills-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 1rem;
