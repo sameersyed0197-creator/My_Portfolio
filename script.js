@@ -40,20 +40,22 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // Typing effect
-const typingText = document.querySelector('.typing-text');
-const text = typingText.textContent;
-typingText.textContent = '';
-let i = 0;
+const typingText = document.querySelector('.hero-subtitle');
+if (typingText) {
+    const text = typingText.textContent;
+    typingText.textContent = '';
+    let i = 0;
 
-function typeWriter() {
-    if (i < text.length) {
-        typingText.textContent += text.charAt(i);
-        i++;
-        setTimeout(typeWriter, 100);
+    function typeWriter() {
+        if (i < text.length) {
+            typingText.textContent += text.charAt(i);
+            i++;
+            setTimeout(typeWriter, 100);
+        }
     }
-}
 
-setTimeout(typeWriter, 1000);
+    setTimeout(typeWriter, 1000);
+}
 
 // Project filtering
 const filterBtns = document.querySelectorAll('.filter-btn');
@@ -99,22 +101,18 @@ document.querySelectorAll('.project-card, .skill-card, .stat').forEach(el => {
     observer.observe(el);
 });
 
-// Contact form submission
-const contactForm = document.querySelector('.contact-form');
-
-contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    alert('Thank you for your message! I will get back to you soon.');
-    contactForm.reset();
-});
-
-// Glitch effect on hover
-const glitchText = document.querySelector('.glitch');
-
-glitchText.addEventListener('mouseenter', () => {
-    glitchText.style.animation = 'glitch 0.3s ease';
-});
-
-glitchText.addEventListener('animationend', () => {
-    glitchText.style.animation = '';
-});
+// Copy email to clipboard
+const emailLink = document.querySelector('a[href*="mail.google.com"]');
+if (emailLink) {
+    emailLink.addEventListener('contextmenu', (e) => {
+        e.preventDefault();
+        const email = 'sameersyed0111@gmail.com';
+        navigator.clipboard.writeText(email).then(() => {
+            const originalText = emailLink.querySelector('span').textContent;
+            emailLink.querySelector('span').textContent = 'Email Copied!';
+            setTimeout(() => {
+                emailLink.querySelector('span').textContent = originalText;
+            }, 2000);
+        });
+    });
+}
